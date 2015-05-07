@@ -21,8 +21,9 @@ cdef class WordExp:
     def __dealloc__(self):
         woexp.wordfree(&self.data)
 
-    def expand(self, char *s, int flags=WRDE_REUSE):
-        '''expand(s, flags=WRDE_REUSE)\n\nPerform wordexp(s, self.data, flags)'''
+    def expand(self, char *s, int flags=0):
+        '''expand(s, flags=0)\n\nPerform wordexp(s, self.data, flags)'''
+        flags |= WRDE_REUSE
         if woexp.wordexp(s, &self.data, flags):
             raise MemoryError("Cannot perform expansion")
 
