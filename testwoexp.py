@@ -9,7 +9,7 @@ print exp.result()
 # TODO fix memoryleak here:
 for f in 0, woexp.WRDE_UNDEF:
     try:
-        exp.expand("$NONEXIST", f)
+        exp.expand("$NONEXIST", flags=f)
         print exp.result()
     except MemoryError as ex:
         print ex.args[0], exp.result()
